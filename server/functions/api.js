@@ -1,5 +1,5 @@
 const serverless = require('serverless-http');
-const { app, connectDB } = require('../server/server');
+const { app, connectDB } = require('../server');
 
 // Ensure DB connection is established for every request
 let isConnected = false;
