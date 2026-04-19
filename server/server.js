@@ -63,12 +63,20 @@ const connectDB = async () => {
     }
   } catch (error) {
     console.error('MongoDB connection error:', error);
-    process.exit(1);
+    // Don't exit in serverless environment
+    if (require.main === module) {
+      process.exit(1);
+    }
   }
 };
 
-connectDB();
+// Start server only if run directly
+if (require.main === module) {
+  connectDB().then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  });
+}
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+module.exports = { app, connectDB };
