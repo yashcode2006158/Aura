@@ -20,6 +20,10 @@ app.use(express.json());
 app.use('/api/applications', applicationRoutes);
 app.use('/api/auth', authRoutes);
 
+app.get('/api', (req, res) => {
+  res.json({ message: 'Aura API is running' });
+});
+
 // Seed Initial Users
 const seedUsers = async () => {
   try {
