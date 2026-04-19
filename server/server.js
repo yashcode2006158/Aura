@@ -24,6 +24,10 @@ app.get('/api', (req, res) => {
   res.json({ message: 'Aura API is running' });
 });
 
+app.get('/', (req, res) => {
+  res.send('<h1>Aura Backend API</h1><p>The API is live. Please use the /api endpoints.</p>');
+});
+
 // Seed Initial Users
 const seedUsers = async () => {
   try {
